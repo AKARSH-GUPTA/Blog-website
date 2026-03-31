@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playwrite+HU:wght@100..400&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <title>My Blog website</title>
+</head>
+<body>
+    <header>
+        <div>
+            <img src="/assets/images/notepad-notebook-svgrepo-com.svg" alt="notebook icon" height="30" style="margin-left: 10px;padding: 0;">
+            <a href="#" id="logo">Blogs</a>
+        </div>
+    </header>
+    <a href="/createform">
+        <button title="create" ><img src="/assets/images/plus-svgrepo-com.svg" alt="plus sign" height="60"></button>
+    </a>
+    <div class="container">
+        <%for(i = 0;i<locals.posts.length;i++){ %>
+            <div class="grid-items">
+                <div>
+                    <h1 class="inter"> <%= posts[i].title %> </h1>
+                    <h5> <%= posts[i].modify_date %> </h5>
+                    <p class="inter"> <%= posts[i].content %> </p>
+                </div>
+                <div class="item-btns">
+                    <h6> <%= posts[i].author %> </h6>
+                    <form action="/del" method="post">
+                        <input type="text" hidden="true" name="id" value="<%=posts[i].id%>">
+                        <input type="image" src="/assets/images/trash-svgrepo-com.svg" height="20" alt="submit" onclick="this.form.submit()">
+                    </form>
+                    <form action="/editform" method="post">
+                        <input type="text" hidden="true" name="id" value="<%= posts[i].id %>">
+                        <input type="image" src="/assets/images/edit-button-svgrepo-com.svg" height="20" alt="submit" onclick="this.form.submit()">
+                    </form>
+                </div>
+            </div>
+        <%}%>
+    </div>
+</body>
+</html>
